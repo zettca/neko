@@ -19,10 +19,10 @@ const App = ({ classes }) => {
       <main className={classes.header}>
         <div style={{ transition: "ease" }}>
           <img src={logo} className={classes.logo} alt="logo" />
-          <p>This web app does stuff! pls believe me</p>
+          <p>This web app does stuff!</p>
           <Button variant="contained" color="secondary" className={classes.button} onClick={handleClick}>
-            Create something
-        </Button>
+            Do stuff
+          </Button>
         </div>
         <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
           <div>
