@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class Socketerino extends Component {
   constructor(props) {
@@ -15,27 +15,27 @@ class Socketerino extends Component {
 
   componentDidMount() {
     const { ws, steps } = this.props;
-    const { message } = steps.chatUser;
-    const self = this;
+    const step = steps.chatUser;
+    const { message, metadata } = step;
 
     ws.send(message);
     ws.onmessage = (event) => {
-      console.log('Message from server ', event.data);
-      self.setState({ loading: false, result: event.data });
+      const { data } = event;
+      console.log('Message from server ', data);
+      metadata.result = data;
+      this.setState({ loading: false, result: data });
       this.triggerNext();
     }
   }
 
   triggerNext() {
     this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep();
+      this.props.triggerNextStep('TESTPLS');
     });
   }
 
   render() {
-    const { trigger, loading, result } = this.state;
-
-    return loading ? (<div>loading...</div>) : null;
+    return null;
   }
 }
 

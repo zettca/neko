@@ -1,0 +1,7 @@
+.card {
+  text-align: left;
+}
+
+.card>span {
+  display: block;
+}

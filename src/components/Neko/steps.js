@@ -1,51 +1,85 @@
 import React from 'react';
-import Socketerino from '../Socketerino';
-import Callbackerino from '../Callbackerino';
+import Socketerino from './components/Socketerino';
+import Shuttle from './components/Shuttle';
+import Forecast from './components/Forecast';
 
-const URL = 'ws://echo.websocket.org' || 'ws://193.136.167.179:8000/conversation';
+const SOCKET_URL = 'ws://localhost:8000' || 'ws://echo.websocket.org' || 'ws://193.136.167.179:8000/conversation';
+
+const ws = new WebSocket(SOCKET_URL);
+
+const randomFrom = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const initSteps = [
   {
     id: '1',
-    message: 'Hello World',
-    trigger: 'chat0' || '10',
+    message: randomFrom(['Hello!', 'Hey!', 'Howdy!', 'Welcome!']),
+    trigger: '0',
+  },
+  {
+    id: '0',
+    message: randomFrom(['What would you like to do?', 'How can I help?', 'Tell me what to do!']),
+    trigger: '10',
   },
   {
     id: '10',
     options: [
-      { value: 'Hey', label: 'Hey', trigger: '11' },
-      { value: 'Hello', label: 'Hello', trigger: '12' },
-      { value: 'Sup', label: 'Sup', trigger: '13' },
+      { value: 'Loop', label: 'Loop', trigger: '11' },
+      { value: 'Forecast', label: 'Forecast', trigger: 'weather0' },
+      { value: 'Insult', label: 'Insult you', trigger: '13' },
       { value: 'Chat', label: 'Chat', trigger: 'chat0' },
       { value: 'Shuttle', label: 'Shuttle', trigger: 'shuttle0' },
+      { value: 'Labs', label: 'Labs', trigger: 'lab0' },
     ],
   },
 ];
 
+const weatherSteps = [
+  {
+    id: 'weather0',
+    message: 'Forecast comming right up!',
+    trigger: 'weather1',
+  },
+  {
+    id: 'weather1',
+    component: <Forecast />,
+    waitAction: true,
+    trigger: 'weatherResponse',
+  },
+  {
+    id: 'weatherResponse',
+    message: 'There you go!',
+    trigger: '1',
+  }
+]
+
 const shuttleSteps = [
   {
     id: 'shuttle0',
-    message: 'you want shuttle?',
-    trigger: 'shuttle1'
+    message: 'Where are you leaving from?',
+    trigger: 'shuttleLocs'
   },
   {
-    id: 'shuttle1',
+    id: 'shuttleLocs',
     options: [
-      { value: 'Yes', label: 'Yes', trigger: 'shuttleYes' },
-      { value: 'No', label: 'No', trigger: '1' },
+      { value: 'Alameda', label: 'Alameda', trigger: 'shuttleShow' },
+      { value: 'Taguspark', label: 'Tagus', trigger: 'shuttleShow' },
     ]
   },
   {
-    id: 'shuttleYes',
-    component: <Callbackerino />,
+    id: 'shuttleShow',
+    component: <Shuttle />,
     waitAction: true,
-    trigger: ({ value, steps }) => 'shuttleWhere'
+    trigger: '0'
   },
-  {
-    id: 'shuttleWhere',
-    message: 'ok',
-  }
 ];
+
+const labSteps = [
+  {
+    id: 'lab0',
+    message: 'You want labs? bad luck!',
+    trigger: '0',
+  }
+]
 
 const otherSteps = [
   {
@@ -75,8 +109,9 @@ const otherSteps = [
   },
   {
     id: '13',
-    message: 'dude, be formal',
-    trigger: '3'
+    message: 'Rude! bye!',
+    trigger: '3',
+    end: true,
   },
   {
     id: '20',
@@ -98,27 +133,30 @@ const otherSteps = [
 const chatSteps = [
   {
     id: 'chat0',
-    message: 'Say something! :)',
+    message: 'Say something! 😊',
     trigger: 'chatUser',
   },
   {
     id: 'chatUser',
     user: true,
     trigger: 'chatSocket',
+    metadata: { result: "" }
   },
   {
     id: 'chatSocket',
-    component: <Socketerino ws={new WebSocket(URL)} />,
+    component: <Socketerino ws={ws} />,
+    asMessage: true,
+    replace: true,
     waitAction: true,
     trigger: 'chatResponse',
   },
   {
     id: 'chatResponse',
-    message: ({ previousValue, steps }) => `response was ${steps.chatUser.value}`,
+    message: ({ previousValue, steps }) => steps.chatUser.metadata.result,
     trigger: 'chatUser',
   }
 ];
 
-const steps = [...initSteps, ...shuttleSteps, ...chatSteps, ...otherSteps];
+const steps = [...initSteps, ...shuttleSteps, ...labSteps, ...weatherSteps, ...chatSteps, ...otherSteps];
 
 export default steps;

@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
 
 import Neko from '../Neko';
-import Calendaro from '../Calendaro';
 import CreateForm from '../CreateForm';
 
 import logo from './calendar.svg';
@@ -32,7 +31,6 @@ const App = ({ classes }) => {
         </Slide>
       </main>
       <Neko />
-      {false && <Calendaro />}
     </div>
   );
 }
