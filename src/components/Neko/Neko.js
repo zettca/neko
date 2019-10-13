@@ -6,6 +6,7 @@ import neko from './neko.svg';
 const Neko = () => (
   <ChatBot
     floating
+    headerTitle="Chat with Neko"
     botAvatar={neko}
     botDelay={200}
     userDelay={100}

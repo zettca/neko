@@ -40,20 +40,23 @@ const qaJokes = [
   ["Why did the man run around his bed?", "To catch up on his sleep!"],
   ["Why did the robber take a bath before he stole from the bank?", "He wanted to make a clean get away!"]];
 
-window.selectedJoke = 0;
+let selectedJoke = 0;
 
 const jokeInit = [
   {
     id: 'joke0',
     message: () => {
-      window.selectedJoke = randomFromArray(qaJokes);
-      return window.selectedJoke[0];
+      selectedJoke = randomFromArray(qaJokes);
+      return selectedJoke[0];
     },
     trigger: 'joke1',
   },
   {
     id: 'joke1',
-    message: (window.selectedJoke && window.selectedJoke[1]) || 'I forgot it...',
+    delay: 3000,
+    message: ({ previousValue, steps }) => {
+      return (selectedJoke && selectedJoke[1]) || 'I forgot it...';
+    },
     trigger: 'jokeMore'
   },
   {
@@ -64,9 +67,6 @@ const jokeInit = [
     ],
   }
 ];
-
-
-
 
 const jokeSteps = [...jokeInit];
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import Shuttle from '../components/Shuttle';
+import Canteen from '../components/Canteen';
 
 const optsSteps = [
   {
@@ -11,7 +12,8 @@ const optsSteps = [
     id: 'istOpts',
     options: [
       { value: 'Shuttle', label: 'Shuttle', trigger: 'shuttle0' },
-      { value: 'Labs', label: 'Labs', trigger: 'lab0' },
+      { value: 'Canteen', label: 'Canteen', trigger: 'canteen0' },
+      { value: 'Labs', label: 'Tagus Labs', trigger: 'lab0' },
     ],
   }
 ];
@@ -37,6 +39,14 @@ const shuttleSteps = [
   },
 ];
 
+const canteenSteps = [
+  {
+    id: 'canteen0',
+    component: <Canteen />,
+    trigger: 'initOpts1',
+  }
+];
+
 const labSteps = [
   {
     id: 'lab0',
@@ -45,6 +55,6 @@ const labSteps = [
   }
 ];
 
-const istSteps = [...optsSteps, ...shuttleSteps, ...labSteps];
+const istSteps = [...optsSteps, ...canteenSteps, ...shuttleSteps, ...labSteps];
 
 export default istSteps;

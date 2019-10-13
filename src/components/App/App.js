@@ -14,24 +14,27 @@ const App = ({ classes }) => {
     setChecked(prev => !prev);
   }
 
-  return (
-    <div className={classes.app}>
-      <main className={classes.header}>
-        <div style={{ transition: "ease" }}>
-          <img src={logo} className={classes.logo} alt="logo" />
-          <p>This web app does stuff!</p>
-          <Button variant="contained" color="secondary" className={classes.button} onClick={handleClick}>
-            Do stuff
-          </Button>
-        </div>
-        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
-          <div>
-            <CreateForm />
+  return ((window.self !== window.top)
+    ? <Neko />
+    : (
+      < div className={classes.app} >
+        <main className={classes.header}>
+          <div style={{ transition: "ease" }}>
+            <img src={logo} className={classes.logo} alt="logo" />
+            <p>This web app does stuff!</p>
+            <Button variant="contained" color="secondary" className={classes.button} onClick={handleClick}>
+              Do stuff
+            </Button>
           </div>
-        </Slide>
-      </main>
-      <Neko />
-    </div>
+          <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+            <div>
+              <CreateForm />
+            </div>
+          </Slide>
+        </main>
+        <Neko />
+      </div >
+    )
   );
 }
 

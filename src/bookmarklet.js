@@ -1,0 +1,10 @@
+const URL = "http://localhost:3000";
+const ifra = document.createElement('iframe');
+ifra.src = URL;
+ifra.setAttribute("height", "600");
+ifra.setAttribute("width", "400");
+ifra.style.position = "fixed";
+ifra.style.right = "10px";
+ifra.style.bottom = "10px";
+ifra.style.border = 0;
+document.body.appendChild(ifra);

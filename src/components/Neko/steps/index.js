@@ -15,6 +15,7 @@ const ws = new WebSocket(SOCKET_URL);
 const initSteps = [
   {
     id: '1',
+    delay: 2000,
     message: () => {
       const greetings = ['Hello', 'Hey', 'Howdy', 'Welcome'];
       return randomFromArray(greetings.map(g => g + (name ? ` ${name}!` : '!')));
