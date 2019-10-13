@@ -78,18 +78,12 @@ class Shuttle extends Component {
     const { loading, result } = this.state;
     const { previousStep } = this.props;
 
-    console.log(previousStep);
-
     return (
       <div>
+        <div style={{ marginBottom: "0.4rem" }}>Shuttles leaving from {previousStep.value}:</div>
         {loading
-          ? "getting Shuttles trips..."
-          : (
-            <>
-              <div style={{ marginBottom: "0.4rem" }}>Shuttles leaving from {previousStep.value}</div>
-              <div>{renderNextShuttles(result, previousStep.value)}</div>
-            </>
-          )}
+          ? <div>getting Shuttles trips...</div>
+          : <div>{renderNextShuttles(result, previousStep.value)}</div>}
       </div>
     );
   }
