@@ -5,7 +5,7 @@ import Slide from '@material-ui/core/Slide';
 import Neko from '../Neko';
 import CreateForm from '../CreateForm';
 
-import logo from './calendar.svg';
+import logo from '../Neko/neko.svg';
 
 const App = ({ classes }) => {
   const [checked, setChecked] = React.useState(false);
