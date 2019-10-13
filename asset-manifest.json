@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d1c2dd69.chunk.css",
+    "main.js": "/static/js/main.a0952479.chunk.js",
+    "main.js.map": "/static/js/main.a0952479.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.985e6003.js",
+    "runtime-main.js.map": "/static/js/runtime-main.985e6003.js.map",
+    "static/js/2.76ad931c.chunk.js": "/static/js/2.76ad931c.chunk.js",
+    "static/js/2.76ad931c.chunk.js.map": "/static/js/2.76ad931c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.28ec82b300c092867c2bf324506b8e05.js": "/precache-manifest.28ec82b300c092867c2bf324506b8e05.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d1c2dd69.chunk.css.map": "/static/css/main.d1c2dd69.chunk.css.map",
+    "static/media/calendar.svg": "/static/media/calendar.e4f0b22b.svg",
+    "static/media/neko.svg": "/static/media/neko.6c24478b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.985e6003.js",
+    "static/js/2.76ad931c.chunk.js",
+    "static/css/main.d1c2dd69.chunk.css",
+    "static/js/main.a0952479.chunk.js"
+  ]
+}
