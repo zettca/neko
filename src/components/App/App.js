@@ -21,9 +21,9 @@ const App = ({ classes }) => {
         <main className={classes.header}>
           <div style={{ transition: "ease" }}>
             <img src={logo} className={classes.logo} alt="logo" />
-            <p>This web app does stuff!</p>
+            <p>Neko: your personal assistant!</p>
             <Button variant="contained" color="secondary" className={classes.button} onClick={handleClick}>
-              Do stuff
+              Bookmarklet
             </Button>
           </div>
           <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
